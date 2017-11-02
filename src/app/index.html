@@ -1,0 +1,27 @@
+<writers-header 
+    nationalities="::$ctrl.nationalities"
+    nationality="$ctrl.filterNationality"
+    on-change="$ctrl.onChangeNationality(nationality)"
+    on-clear="$ctrl.onClearNationality()"
+></writers-header>
+<main>
+    <section>
+        <h2 ng-bind="'Authors'"></h2>
+        <writers-table 
+            columns="::$ctrl.writersColumns" 
+            rows="$ctrl.writers"
+        ></writers-table>
+    </section>
+    <section>
+        <h2 ng-bind="$ctrl.filterWriter || 'Books'"></h2>
+        <button
+            ng-if="$ctrl.filterWriter" 
+            ng-click="$ctrl.onClearWriterFilter()"
+            ng-bind="'Clear'"
+        ></button>
+        <writers-table 
+            columns="::$ctrl.booksColumns" 
+            rows="$ctrl.books"
+        ></writers-table>
+    </section>
+</main>

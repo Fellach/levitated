@@ -1,0 +1,21 @@
+<input type="search" ng-model="$ctrl.search" placeholder="Search in table"/>
+<table>
+    <thead>
+        <tr>
+            <th 
+                ng-repeat="column in ::$ctrl.columns" 
+                ng-bind="::column.label"
+            ></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="row in $ctrl.rows | filter: $ctrl.search">
+            <td 
+                ng-repeat="column in ::$ctrl.columns" 
+                ng-bind="row[column.key]" 
+                ng-click="column.onclick(row)" 
+                ng-class="{clickable: column.onclick}"
+            ></td>
+        </tr>
+    </tbody>
+</table>

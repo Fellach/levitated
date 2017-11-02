@@ -1,0 +1,84 @@
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/normalize';
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding';
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/grid';
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns';
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/tables';
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/forms';
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons';
+
+a,
+*[ng-click]:not(td) {
+  cursor: pointer;
+}
+
+body {
+  @extend .container-fluid;
+  
+  writers-header {
+    header {
+      span {
+        @extend .dropdown;
+
+        > a {
+          @extend .btn, .btn-default;
+        }
+  
+        ul {
+          @extend .dropdown-menu;
+          
+          &.open {
+            display: block;
+            transform: translate(0, 10px);
+          }
+
+          li {
+            padding: 6px 12px;
+
+            &:hover {
+              color: $link-color;
+            }
+
+            &.active {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      button {
+        @extend .btn, .btn-default;
+      }
+    }
+  }
+  
+  main {
+    @extend .row;
+  
+    section {
+      @extend .col-md-6;
+
+      button {
+        @extend .btn, .btn-default;
+        position: absolute;
+        top: 18px;
+        right: 15px;
+      }
+  
+      writers-table {
+        input {
+          @extend .form-control;
+        }
+
+        table {
+          @extend .table, .table-striped;
+
+          .clickable {
+            @extend a;
+          }
+        }
+      }
+    }
+  }
+}

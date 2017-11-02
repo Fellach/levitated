@@ -1,0 +1,21 @@
+<header>
+    <span>
+        <a 
+            ng-click="$ctrl.isOpen = !$ctrl.isOpen"
+            ng-bind="$ctrl.nationality || 'Filter by nationality'"
+        ></a>
+        <ul ng-class="{open: $ctrl.isOpen}">
+            <li 
+                ng-repeat="nationality in ::$ctrl.nationalities"
+                ng-bind="::nationality"
+                ng-click="$ctrl.onChange({nationality}); $ctrl.isOpen = false"
+                ng-class="{active: $ctrl.nationality === nationality}"
+            ></li>
+        </ul>
+    </span>
+    <button
+        ng-if="$ctrl.nationality" 
+        ng-click="$ctrl.onClear()"
+        ng-bind="'Clear'"
+    ></button>
+</header>
