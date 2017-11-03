@@ -1,5 +1,5 @@
 <header>
-    <span>
+    <span ng-if="::$ctrl.nationalities.length">
         <a 
             ng-click="$ctrl.isOpen = !$ctrl.isOpen"
             ng-bind="$ctrl.nationality || 'Filter by nationality'"

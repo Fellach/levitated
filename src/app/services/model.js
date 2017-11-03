@@ -33,7 +33,7 @@ export class Model {
   filterByWriter(writer) {
     const deferred = this.$q.defer();
     this.$timeout(() => {
-      const books = this.unfiltered.books.filter(book => book.authorId === writer.id);
+      const books = this.unfiltered.books.filter(book => book.author_id === writer.id);
       deferred.resolve(books);
     });
     return deferred.promise;
@@ -44,7 +44,7 @@ export class Model {
     const deferred = this.$q.defer();
     this.$timeout(() => {
       const writers = this.unfiltered.writers.filter(writer => writer.nationality === nationality);
-      const books = this.unfiltered.books.filter(book => writers.find(writer => book.authorId === writer.id));
+      const books = this.unfiltered.books.filter(book => writers.find(writer => book.author_id === writer.id));
       deferred.resolve({
         writers,
         books
@@ -77,7 +77,8 @@ export class Model {
 
   // $http error callback
   onError(error) {
-    this.$log.error(error);
+    this.$log.error(error.data);
+    return [];
   }
 }
 
@@ -107,13 +108,12 @@ function processWriters(writers, books) {
 function processBooks(books, writers) {
   return books.map(book => {
     const author = writers.find(writer => writer.id === book.author_id);
-    return {
-      id: book.id,
-      title: book.title,
-      author: `${author.first_name} ${author.last_name}`,
-      authorId: author.id,
-      year: book.year
-    };
+    if (author) {
+      book = angular.extend({}, book, {
+        author: `${author.first_name} ${author.last_name}`
+      });
+    }
+    return book;
   });
 }
 
