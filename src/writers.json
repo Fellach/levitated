@@ -10,5 +10,11 @@
         "first_name": "Arthur C.",
         "last_name": "Clarke",
         "nationality": "British"
+    },
+    {
+        "id": 3,
+        "first_name": "Paolo",
+        "last_name": "Bacigalupi",
+        "nationality": "American"
     }
 ]
